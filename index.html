@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>國小四年級國語互動學習網頁 - 第八課 四季的頭髮</title>
+  <!-- 核心樣式表 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 頂部主標題與控制工具列 -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="brand-section">
+        <div class="brand-icon" aria-hidden="true" title="四季微風與自然的禮讚">🍃</div>
+        <div class="brand-text">
+          <h1 id="app-main-title">國小四年級國語 互動學習天地</h1>
+          <div class="brand-badges">
+            <span class="badge" id="badge-unit">第參單元 觀察與想像</span>
+            <span class="badge" id="badge-lesson">第八課 四季的頭髮</span>
+            <span class="badge" id="badge-author">作者：林世仁</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-controls">
+        <button class="btn-ctrl" id="btn-toggle-sound" title="切換音效">
+          <span id="sound-icon">🔊</span> <span id="sound-text">音效開啟</span>
+        </button>
+        <button class="btn-ctrl" id="btn-font-size" title="切換字體大小（大字/超大投影字）">
+          <span>🔍</span> <span id="font-size-text">教室投影大字</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 學習單元導覽標籤列 -->
+  <nav class="unit-nav-wrapper">
+    <div class="unit-nav" role="tablist">
+      <button class="nav-tab active" data-unit="unit-guide" role="tab">
+        <span class="tab-icon">📖</span> 第一單元：四季童詩導讀
+      </button>
+      <button class="nav-tab" data-unit="unit-vocab" role="tab">
+        <span class="tab-icon">✍️</span> 第二單元：生字與語詞圖鑑
+      </button>
+      <button class="nav-tab" data-unit="unit-grammar" role="tab">
+        <span class="tab-icon">💡</span> 第三單元：修辭與句型魔術
+      </button>
+      <button class="nav-tab" data-unit="unit-comprehension" role="tab">
+        <span class="tab-icon">🧐</span> 第四單元：課文理解偵探
+      </button>
+      <button class="nav-tab" data-unit="unit-deepthink" role="tab">
+        <span class="tab-icon">🌱</span> 第五單元：PIRLS 思考深究
+      </button>
+      <button class="nav-tab" data-unit="unit-adventure" role="tab">
+        <span class="tab-icon">🏆</span> 第六單元：小小詩人闖關
+      </button>
+    </div>
+  </nav>
+
+  <!-- 主內容區域 -->
+  <main class="app-main">
+
+    <!-- 第一單元：課文導讀與四季童詩卡片 -->
+    <section id="unit-guide" class="unit-section active">
+      
+      <!-- 四季特色首頁主題視覺看板 (Season Showcase Banner) -->
+      <div class="season-visual-banner">
+        <div class="season-banner-header">
+          <div class="season-banner-title">
+            <span>🌬️</span> 跟著風兒，尋找大自然的四季頭髮！ <span>✨</span>
+          </div>
+          <p class="season-banner-sub">
+            春天、夏天、秋天、冬天，大自然換了四種奇妙的髮型！點擊下方季節卡片，跟著風兒一起去探索吧：
+          </p>
+        </div>
+
+        <div class="season-cards-grid">
+          <!-- 夏季卡片 -->
+          <div class="season-mini-card summer" onclick="document.querySelectorAll('.paragraph-card')[0]?.scrollIntoView({behavior:'smooth'})">
+            <div class="season-icon">☀️🌧️</div>
+            <div class="season-name" style="color: var(--summer-accent);">【夏】南風吹來</div>
+            <div class="season-meta">頭髮是<strong>西北雨</strong><br>又急又長・溼了眼眶</div>
+          </div>
+          <!-- 秋季卡片 -->
+          <div class="season-mini-card autumn" onclick="document.querySelectorAll('.paragraph-card')[1]?.scrollIntoView({behavior:'smooth'})">
+            <div class="season-icon">🌾🍂</div>
+            <div class="season-name" style="color: var(--autumn-accent);">【秋】西風吹來</div>
+            <div class="season-meta">頭髮是<strong>滿山芒草</strong><br>咻咻咻・親吻天空</div>
+          </div>
+          <!-- 冬季卡片 -->
+          <div class="season-mini-card winter" onclick="document.querySelectorAll('.paragraph-card')[2]?.scrollIntoView({behavior:'smooth'})">
+            <div class="season-icon">❄️⛷️</div>
+            <div class="season-name" style="color: var(--winter-accent);">【冬】北風吹來</div>
+            <div class="season-meta">頭髮是<strong>山頂白雪</strong><br>冰涼涼・梳出長辮子</div>
+          </div>
+          <!-- 春季卡片 -->
+          <div class="season-mini-card spring" onclick="document.querySelectorAll('.paragraph-card')[3]?.scrollIntoView({behavior:'smooth'})">
+            <div class="season-icon">🌱🌸</div>
+            <div class="season-name" style="color: var(--spring-accent);">【春】東風吹來</div>
+            <div class="season-meta">頭髮是<strong>小青草</strong><br>踮腳挺腰・短髮最好看</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 導讀英雄卡 -->
+      <div class="unit-hero-card">
+        <div>
+          <h2><span>📖</span> 童詩導讀與大自然四季想像</h2>
+          <p id="guide-summary-text"></p>
+        </div>
+        <button class="btn-tts" id="btn-read-full-lesson">
+          <span>🔊</span> 朗讀全首童詩
+        </button>
+      </div>
+
+      <!-- 課前思考 / 引起動機 -->
+      <div class="card pre-question-card">
+        <h3 style="color: #b25e00; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          <span>🤔</span> 課前思考・動動腦（引起動機）
+        </h3>
+        <p style="color: #6d4c41; margin-bottom: 1rem;">在上課前，先和老師與同學討論下面這幾個有趣的問題吧：</p>
+        <div id="pre-questions-container"></div>
+      </div>
+
+      <!-- 課文分段解析與四季移動導讀 -->
+      <h3 style="font-size: 1.45rem; font-weight: 800; margin: 2rem 0 1.2rem 0; display: flex; align-items: center; gap: 0.5rem;">
+        <span>🗺️</span> 童詩分段研讀・四季髮型奇遇記
+      </h3>
+      <div id="paragraphs-container"></div>
+    </section>
+
+    <!-- 第二單元：生字與語詞圖鑑 -->
+    <section id="unit-vocab" class="unit-section">
+      <div class="unit-hero-card">
+        <div>
+          <h2><span>✍️</span> 生字圖鑑、重要語詞與多音字小講堂</h2>
+          <p>學習本課 12 個生字的部首、筆畫、書寫叮嚀與延伸成語，並精準掌握多音字「散」、「乘」、「嚇」的讀音！</p>
+        </div>
+      </div>
+
+      <!-- 多音字講堂卡片 -->
+      <div id="polyphone-container"></div>
+
+      <!-- 12個課本生字學習卡 -->
+      <h3 style="font-size: 1.45rem; font-weight: 800; margin: 1.8rem 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+        <span>🔤</span> 本課 12 生字自然圖鑑卡（點擊生字卡聽讀音與看筆畫）
+      </h3>
+      <div class="char-grid" id="characters-container"></div>
+
+      <!-- 重要語詞卡片 -->
+      <h3 style="font-size: 1.45rem; font-weight: 800; margin: 1.8rem 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+        <span>📚</span> 課文核心語詞與延伸成語
+      </h3>
+      <div class="vocab-cards-grid" id="words-container"></div>
+
+      <!-- 語詞點選配對互動遊戲 (平板親和) -->
+      <div class="match-game-container">
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: #166534; display: flex; align-items: center; gap: 0.5rem;">
+          <span>🎯</span> 語詞配對小高手（點選左邊詞語，再點選右邊符合的解釋）
+        </h3>
+        <p style="color: #374151; margin-top: 0.4rem;">支援觸控與滑鼠操作，配對成功即可消除卡片！</p>
+        <div class="match-grid" id="vocab-match-grid">
+          <div class="match-column" id="match-col-terms"></div>
+          <div class="match-column" id="match-col-defs"></div>
+        </div>
+        <div style="margin-top: 1.2rem; text-align: center;">
+          <button class="btn-secondary" id="btn-reset-match"><span>🔄</span> 重新挑戰配對</button>
+        </div>
+      </div>
+
+      <!-- 語詞隨堂自我檢測 -->
+      <h3 style="font-size: 1.45rem; font-weight: 800; margin: 1.8rem 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+        <span>📝</span> 語詞能力小試身手
+      </h3>
+      <div id="vocab-quizzes-container"></div>
+    </section>
+
+    <!-- 第三單元：句型與知識 -->
+    <section id="unit-grammar" class="unit-section">
+      <div class="unit-hero-card">
+        <div>
+          <h2><span>💡</span> 句型結構、修辭魔術與寫作技巧</h2>
+          <p>解析課文中生動的「譬喻修辭」、「擬人修辭」、「設問自答」與「時間式結構童詩技巧」，透過互動練習提升表達力！</p>
+        </div>
+      </div>
+
+      <!-- 句型結構卡片 -->
+      <div id="sentence-knowledge-container"></div>
+
+      <!-- 句子重組互動遊戲 -->
+      <h3 style="font-size: 1.45rem; font-weight: 800; margin: 1.8rem 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+        <span>🧩</span> 句子重組小魔術（依序點選詞塊拼出課文原句）
+      </h3>
+      <div id="unscramble-container"></div>
+
+      <!-- 句型測驗 -->
+      <h3 style="font-size: 1.45rem; font-weight: 800; margin: 1.8rem 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+        <span>📝</span> 句型與修辭隨堂測驗
+      </h3>
+      <div id="sentence-quizzes-container"></div>
+    </section>
+
+    <!-- 第四單元：課文理解 -->
+    <section id="unit-comprehension" class="unit-section">
+      <div class="unit-hero-card">
+        <div>
+          <h2><span>🧐</span> 課文內容理解與段落核心偵探</h2>
+          <p>掌握四季風向、景物想像與動態描摹，精準檢驗對童詩內涵與細節的理解！</p>
+        </div>
+      </div>
+
+      <div id="reading-comprehension-container"></div>
+    </section>
+
+    <!-- 第五單元：閱讀理解與思考 -->
+    <section id="unit-deepthink" class="unit-section">
+      <div class="unit-hero-card">
+        <div>
+          <h2><span>🌱</span> 閱讀理解與思考・四季小小詩人深究</h2>
+          <p>依照國際 PIRLS 閱讀層次設計：由「提取訊息」、「推論判斷」、「詮釋整合」到「延伸思辨」，引導四年級學童深層思考！</p>
+        </div>
+      </div>
+
+      <div id="deep-questions-container"></div>
+    </section>
+
+    <!-- 第六單元：互動闖關大冒險 -->
+    <section id="unit-adventure" class="unit-section">
+      <!-- 闖關儀表板 -->
+      <div class="adventure-dashboard">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2 style="font-size: 1.8rem; font-weight: 900; color: #f59e0b; display: flex; align-items: center; gap: 0.6rem;">
+              <span>🏆</span> 四季小小詩人・闖關大冒險
+            </h2>
+            <p style="color: #d1d5db; margin-top: 0.3rem;">挑戰五大整合關卡，爭取「四季小小詩人認證獎狀」！</p>
+          </div>
+          <button class="btn-outline" id="btn-restart-adventure" style="color: #fff; border-color: rgba(255,255,255,0.4);">
+            <span>🔄</span> 重新挑戰闖關
+          </button>
+        </div>
+
+        <div class="adv-stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">目前關卡</div>
+            <div class="stat-value" id="adv-stage-display">1 / 5</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">累積得分</div>
+            <div class="stat-value" id="adv-score-display">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">挑戰完成率</div>
+            <div class="stat-value" id="adv-progress-display">0%</div>
+          </div>
+        </div>
+
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="adv-progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- 關卡內容容器 -->
+      <div id="adventure-stages-host"></div>
+    </section>
+
+  </main>
+
+  <!-- 闖關成功頒獎彈窗 Modal -->
+  <div class="modal-overlay" id="cert-modal">
+    <div class="certificate-card">
+      <div class="cert-icon">🏅</div>
+      <h2 class="cert-title">四季小小詩人</h2>
+      <p class="cert-subtitle">國小四年級國語科・童詩挑戰榮譽認證</p>
+      
+      <div class="cert-score-box">
+        <p style="font-size: 1rem; color: #92400e; font-weight: 700; margin-bottom: 0.4rem;">總成績結算</p>
+        <div class="cert-score-num" id="cert-final-score">100</div>
+        <p id="cert-stars" style="font-size: 1.8rem; margin-top: 0.5rem;">⭐⭐⭐⭐⭐</p>
+      </div>
+
+      <div class="cert-feedback" id="cert-feedback-text">
+        太棒了！你完美掌握了課文的四季時序、修辭譬喻與生動擬人，是一位名副其實的「四季小小詩人」！
+      </div>
+
+      <div class="cert-buttons">
+        <button class="btn-secondary" id="btn-retry-wrong" style="display: none;">
+          <span>🎯</span> 錯題強化重練
+        </button>
+        <button class="btn-primary" id="btn-modal-restart">
+          <span>🔄</span> 重新再玩一次
+        </button>
+        <button class="btn-outline" id="btn-close-modal">
+          <span>關閉</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 頁腳 -->
+  <footer class="app-footer">
+    <p>國小四年級國語科教學互動系統 ｜ 依據國小國語第四年級第八課《四季的頭髮》（林世仁）文本標準設計</p>
+    <p style="font-size: 0.88rem; margin-top: 0.4rem; color: #9ca3af;">模組化架構設計・支援無伺服器直接離線開啟與平板投影教學</p>
+  </footer>
+
+  <!-- 載入資料模組與互動引擎（相對路徑確保 GitHub Pages 完美相容） -->
+  <script src="lesson-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

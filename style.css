@@ -1,0 +1,1486 @@
+/* ==============================================================================
+   國小四年級國語科第八課《四季的頭髮》專屬繪本風主題樣式表
+   設計風格：自然繪本風格 (Natural Storybook Aesthetic)
+   特色：四季時序色彩流轉、微風流線動效、護眼米紙質調、大字投影與平板觸控親和
+   ============================================================================== */
+
+@charset "UTF-8";
+
+/* ------------------------------------------------------------------------------
+   1. 四季主題色彩變數系統 (CSS Custom Properties)
+   ------------------------------------------------------------------------------ */
+:root {
+  /* 基礎繪本紙張質調 */
+  --bg-parchment: #fcf9f2;         /* 溫潤繪本米紙底色 */
+  --bg-card: #ffffff;              /* 卡片純淨底色 */
+  --bg-card-subtle: #f9f6ef;       /* 微深襯底紙色 */
+  --text-main: #2d3748;            /* 主文字深灰褐（比純黑溫和、高對比易讀） */
+  --text-muted: #64748b;           /* 次要輔助文字 */
+  --text-highlight: #1e293b;       /* 強調標題深色 */
+  --border-subtle: #ebd5b3;        /* 繪本暖邊框色 */
+
+  /* 四季專屬情境色 */
+  /* 夏：西北雨與南風（沉穩蔚藍、雨霧晶藍） */
+  --summer-primary: #0284c7;
+  --summer-light: #e0f2fe;
+  --summer-border: #7dd3fc;
+  --summer-accent: #0369a1;
+
+  /* 秋：金黃芒草與西風（溫暖澄黃、秋芒落霞） */
+  --autumn-primary: #d97706;
+  --autumn-light: #fef3c7;
+  --autumn-border: #fcd34d;
+  --autumn-accent: #b45309;
+
+  /* 冬：山頂白雪與北風（晶瑩冰藍、純淨雪白） */
+  --winter-primary: #2563eb;
+  --winter-light: #eff6ff;
+  --winter-border: #bfdbfe;
+  --winter-accent: #1d4ed8;
+
+  /* 春：萌芽青草與東風（朝氣生機綠、嫩芽粉綠） */
+  --spring-primary: #15803d;
+  --spring-light: #ecfdf5;
+  --spring-border: #86efac;
+  --spring-accent: #166534;
+
+  /* 通用品牌色調 */
+  --brand-gold: #f59e0b;
+  --brand-gold-glow: rgba(245, 158, 11, 0.25);
+  --success: #16a34a;
+  --error: #dc2626;
+  --warning: #f59e0b;
+
+  /* 字體尺寸尺度（國小四年級親和） */
+  --font-base: 19px;
+  --font-h1: 2.1rem;
+  --font-h2: 1.7rem;
+  --font-h3: 1.38rem;
+  --font-body: 1.08rem;
+  --font-poem: 1.35rem;
+
+  /* 圓角與陰影（繪本圓潤感） */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+  --shadow-sm: 0 2px 6px rgba(139, 92, 46, 0.06);
+  --shadow-md: 0 6px 18px rgba(139, 92, 46, 0.09);
+  --shadow-lg: 0 12px 28px rgba(139, 92, 46, 0.12);
+  --shadow-hover: 0 16px 36px rgba(139, 92, 46, 0.16);
+
+  /* 動畫速度 */
+  --trans-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ------------------------------------------------------------------------------
+   2. 全域排版與基礎重設
+   ------------------------------------------------------------------------------ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "微軟正黑體", system-ui, sans-serif;
+  font-size: var(--font-base);
+  line-height: 1.75;
+  color: var(--text-main);
+  background-color: var(--bg-parchment);
+  background-image: 
+    radial-gradient(ellipse at top left, rgba(224, 242, 254, 0.5), transparent 45%),
+    radial-gradient(ellipse at bottom right, rgba(254, 243, 199, 0.4), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(236, 253, 245, 0.3), transparent 70%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ------------------------------------------------------------------------------
+   3. 頂部導覽列 (Main Header) - 四季微風風格
+   ------------------------------------------------------------------------------ */
+.main-header {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+  transition: var(--trans-smooth);
+}
+
+.header-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.9rem 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.brand-icon {
+  font-size: 2.3rem;
+  width: 58px;
+  height: 58px;
+  background: linear-gradient(135deg, #fef08a, #fed7aa, #bbf7d0);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+  transform: rotate(-3deg);
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+.brand-icon:hover {
+  transform: rotate(6deg) scale(1.05);
+}
+
+.brand-text h1 {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #1e293b;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.brand-badges {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 0.18rem 0.65rem;
+  border-radius: var(--radius-pill);
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+#badge-unit {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+#badge-lesson {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+#badge-author {
+  background: #e0f2fe;
+  color: #0369a1;
+  border-color: #bae6fd;
+}
+
+.header-controls {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.btn-ctrl {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #334155;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+  transition: var(--trans-smooth);
+}
+
+.btn-ctrl:hover {
+  background: #f8fafc;
+  border-color: var(--autumn-primary);
+  color: var(--autumn-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ------------------------------------------------------------------------------
+   4. 學習單元導覽標籤列 (Unit Navigation Tabs)
+   ------------------------------------------------------------------------------ */
+.unit-nav-wrapper {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 76px;
+  z-index: 90;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.unit-nav-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.unit-nav {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  padding: 0.4rem 1.4rem;
+  gap: 0.6rem;
+}
+
+.nav-tab {
+  background: transparent;
+  border: none;
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #475569;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: var(--trans-smooth);
+}
+
+.nav-tab .tab-icon {
+  font-size: 1.25rem;
+}
+
+.nav-tab:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.nav-tab.active {
+  background: linear-gradient(135deg, #fef3c7, #fed7aa);
+  color: #92400e;
+  box-shadow: 0 3px 10px rgba(217, 119, 6, 0.18);
+  border: 1px solid #fde68a;
+  transform: scale(1.02);
+}
+
+/* ------------------------------------------------------------------------------
+   5. 主容器與單元 Section 管理
+   ------------------------------------------------------------------------------ */
+.app-main {
+  max-width: 1240px;
+  width: 100%;
+  margin: 1.8rem auto 3rem auto;
+  padding: 0 1.4rem;
+  flex: 1;
+}
+
+.unit-section {
+  display: none;
+  animation: fadeIn 0.35s ease-out;
+}
+
+.unit-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ------------------------------------------------------------------------------
+   6. 繪本風單元英雄卡片 (Unit Hero Card)
+   ------------------------------------------------------------------------------ */
+.unit-hero-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fffbf0 100%);
+  border: 2px solid #fed7aa;
+  border-radius: var(--radius-lg);
+  padding: 1.6rem 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.unit-hero-card::after {
+  content: "🍃";
+  position: absolute;
+  right: 1.5rem;
+  bottom: -0.8rem;
+  font-size: 5rem;
+  opacity: 0.08;
+  pointer-events: none;
+  transform: rotate(20deg);
+}
+
+.unit-hero-card h2 {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #7c2d12;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.unit-hero-card p {
+  color: #57534e;
+  font-size: 1.05rem;
+  max-width: 780px;
+  line-height: 1.7;
+}
+
+/* 四季特色首頁主視覺看板 (Season Showcase Banner) */
+.season-visual-banner {
+  background: linear-gradient(135deg, #f0fdf4 0%, #fef3c7 50%, #e0f2fe 100%);
+  border: 2.5px solid #fde68a;
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.season-banner-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.season-banner-title {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: #1e293b;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.season-banner-sub {
+  color: #64748b;
+  font-size: 1.08rem;
+  margin-top: 0.3rem;
+}
+
+.season-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.season-mini-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  text-align: center;
+  border: 2px solid transparent;
+  box-shadow: var(--shadow-sm);
+  transition: var(--trans-smooth);
+  cursor: pointer;
+}
+
+.season-mini-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.season-mini-card.summer {
+  border-color: var(--summer-border);
+}
+.season-mini-card.summer:hover {
+  background: var(--summer-light);
+}
+
+.season-mini-card.autumn {
+  border-color: var(--autumn-border);
+}
+.season-mini-card.autumn:hover {
+  background: var(--autumn-light);
+}
+
+.season-mini-card.winter {
+  border-color: var(--winter-border);
+}
+.season-mini-card.winter:hover {
+  background: var(--winter-light);
+}
+
+.season-mini-card.spring {
+  border-color: var(--spring-border);
+}
+.season-mini-card.spring:hover {
+  background: var(--spring-light);
+}
+
+.season-icon {
+  font-size: 2.4rem;
+  margin-bottom: 0.3rem;
+}
+
+.season-name {
+  font-size: 1.15rem;
+  font-weight: 900;
+  margin-bottom: 0.2rem;
+}
+
+.season-meta {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* ------------------------------------------------------------------------------
+   7. 第一單元：課文導讀與四季童詩卡片 (Poem Cards)
+   ------------------------------------------------------------------------------ */
+.card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.8rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--trans-smooth);
+}
+
+.pre-question-card {
+  background: #fffdf8;
+  border-color: #fde68a;
+  border-left: 6px solid var(--brand-gold);
+}
+
+.pre-question-item {
+  background: #ffffff;
+  border: 1px solid #f3e8d2;
+  border-radius: var(--radius-sm);
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.pre-q-header {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #92400e;
+  margin-bottom: 0.4rem;
+}
+
+.pre-q-body p {
+  color: #64748b;
+  font-size: 0.98rem;
+}
+
+.toggle-tip-btn {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: var(--trans-smooth);
+}
+
+.toggle-tip-btn:hover {
+  background: #fde68a;
+}
+
+.inspiration-box {
+  display: none;
+  background: #fdfaf3;
+  border: 1px dashed #d97706;
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.1rem;
+  margin-top: 0.8rem;
+  font-size: 0.98rem;
+  color: #78350f;
+  line-height: 1.8;
+  animation: fadeIn 0.25s ease;
+}
+
+.inspiration-box.show {
+  display: block;
+}
+
+/* 課文分段卡片 (依四季客製化不同邊框與色系) */
+.paragraph-card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 2.2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--trans-smooth);
+  position: relative;
+}
+
+.paragraph-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* 夏季卡片主題 */
+.paragraph-card:nth-of-type(1) {
+  border-color: #bae6fd;
+  border-left: 8px solid var(--summer-primary);
+  background: linear-gradient(to right, rgba(224, 242, 254, 0.2), #ffffff 20%);
+}
+
+/* 秋季卡片主題 */
+.paragraph-card:nth-of-type(2) {
+  border-color: #fed7aa;
+  border-left: 8px solid var(--autumn-primary);
+  background: linear-gradient(to right, rgba(254, 243, 199, 0.2), #ffffff 20%);
+}
+
+/* 冬季卡片主題 */
+.paragraph-card:nth-of-type(3) {
+  border-color: #bfdbfe;
+  border-left: 8px solid var(--winter-primary);
+  background: linear-gradient(to right, rgba(239, 246, 255, 0.25), #ffffff 20%);
+}
+
+/* 春季卡片主題 */
+.paragraph-card:nth-of-type(4) {
+  border-color: #bbf7d0;
+  border-left: 8px solid var(--spring-primary);
+  background: linear-gradient(to right, rgba(236, 253, 245, 0.25), #ffffff 20%);
+}
+
+.para-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.para-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.para-badge {
+  font-size: 0.86rem;
+  font-weight: 800;
+  padding: 0.2rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.para-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.para-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.spatial-pill {
+  font-size: 0.86rem;
+  font-weight: 700;
+  padding: 0.2rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.sensory-pill {
+  font-size: 0.86rem;
+  font-weight: 700;
+  padding: 0.2rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* 童詩排版：每行清晰分行、大字、適度行高、不縮排、字距舒適 */
+.para-text {
+  font-size: var(--font-poem);
+  line-height: 2.1;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  white-space: pre-line;
+  text-indent: 0;
+  background: #ffffff;
+  padding: 1.4rem 1.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid #f1f5f9;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+.para-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.para-notes {
+  font-size: 0.98rem;
+  color: #475569;
+  line-height: 1.7;
+  max-width: 75%;
+}
+
+.btn-tts {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.98rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+  transition: var(--trans-smooth);
+}
+
+.btn-tts:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(217, 119, 6, 0.35);
+}
+
+/* ------------------------------------------------------------------------------
+   8. 第二單元：生字智慧卡、重要語詞與多音字講堂
+   ------------------------------------------------------------------------------ */
+/* 多音字講堂卡片 */
+.polyphone-card {
+  background: #ffffff;
+  border: 2px solid #bfdbfe;
+  border-radius: var(--radius-lg);
+  padding: 1.6rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.poly-case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin: 1.2rem 0;
+}
+
+.poly-case {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  transition: var(--trans-smooth);
+}
+
+.poly-case:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.poly-sound {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #1e40af;
+  margin-bottom: 0.4rem;
+}
+
+.poly-tip-box {
+  background: #fef3c7;
+  border-left: 5px solid #f59e0b;
+  padding: 0.9rem 1.2rem;
+  border-radius: var(--radius-sm);
+  color: #92400e;
+  font-weight: 700;
+  font-size: 1.02rem;
+}
+
+/* 12 個生字智慧卡網格 */
+.char-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.3rem;
+  margin-bottom: 2.2rem;
+}
+
+.char-card {
+  background: #ffffff;
+  border: 2px solid #fed7aa;
+  border-radius: var(--radius-md);
+  padding: 1.3rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--trans-smooth);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.char-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--autumn-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.char-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px dashed #fed7aa;
+}
+
+.char-symbol {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #7c2d12;
+  width: 66px;
+  height: 66px;
+  background: linear-gradient(135deg, #fef3c7, #fed7aa);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.15);
+  border: 1px solid #fcd34d;
+  flex-shrink: 0;
+}
+
+.char-meta-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.char-bopomofo {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #d97706;
+}
+
+.char-radical, .char-strokes {
+  font-size: 0.88rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.char-words-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.6rem 0;
+}
+
+.char-word-tag {
+  background: #f1f5f9;
+  color: #334155;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.88rem;
+  font-weight: 700;
+  border: 1px solid #e2e8f0;
+}
+
+.char-tip {
+  margin-top: auto;
+  background: #fffdf5;
+  border: 1px solid #fef08a;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.7rem;
+  font-size: 0.85rem;
+  color: #854d0e;
+  line-height: 1.5;
+}
+
+/* 重要語詞與延伸成語卡片 */
+.vocab-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.3rem;
+  margin-bottom: 2.5rem;
+}
+
+.vocab-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1.3rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--trans-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.vocab-card:hover {
+  border-color: #f59e0b;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.vocab-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.4rem;
+}
+
+.vocab-title span:first-child {
+  font-size: 1.38rem;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.vocab-bopo {
+  font-size: 0.95rem;
+  color: #d97706;
+  font-weight: 700;
+}
+
+.vocab-meaning {
+  font-size: 1rem;
+  color: #334155;
+  margin: 0.6rem 0;
+  line-height: 1.6;
+}
+
+.vocab-example {
+  background: #f8fafc;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+  color: #475569;
+  border-left: 3px solid #cbd5e1;
+  margin-top: auto;
+}
+
+/* 語詞配對遊戲 (Match Game) */
+.match-game-container {
+  background: #ffffff;
+  border: 2px solid #bbf7d0;
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 2rem;
+  margin: 2.2rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.match-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8rem;
+  margin-top: 1.2rem;
+}
+
+.match-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.match-card {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.3rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  transition: var(--trans-smooth);
+  box-shadow: var(--shadow-sm);
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.match-card:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  transform: translateX(4px);
+}
+
+.match-card.active-select {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.25);
+  transform: scale(1.02);
+}
+
+.match-card.matched {
+  background: #ecfdf5;
+  border-color: #86efac;
+  color: #166534;
+  opacity: 0.7;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------------------
+   9. 第三單元：句型知識與句子重組 (Grammar & Unscramble)
+   ------------------------------------------------------------------------------ */
+.unscramble-container {
+  background: #ffffff;
+  border: 2px solid #fed7aa;
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.8rem;
+  margin-bottom: 1.8rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.chunks-source, .sentence-target-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  min-height: 60px;
+  padding: 0.8rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+}
+
+.chunks-source {
+  background: #f8fafc;
+  border: 1.5px dashed #cbd5e1;
+}
+
+.sentence-target-area {
+  background: #fffdf8;
+  border: 2px dashed #f59e0b;
+}
+
+.word-chunk {
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: var(--radius-pill);
+  padding: 0.5rem 1.1rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #1e293b;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--trans-smooth);
+}
+
+.word-chunk:hover {
+  border-color: #f59e0b;
+  transform: translateY(-2px);
+  background: #fef3c7;
+}
+
+.chunk-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+/* ------------------------------------------------------------------------------
+   10. 通用測驗模組 (Quiz Box & Feedback)
+   ------------------------------------------------------------------------------ */
+.quiz-box {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.8rem;
+  margin-bottom: 1.4rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.quiz-header {
+  margin-bottom: 0.6rem;
+}
+
+.quiz-badge {
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.quiz-question {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.option-btn {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  text-align: left;
+  transition: var(--trans-smooth);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.option-btn:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  transform: translateX(4px);
+}
+
+.option-btn.selected-correct {
+  background: #ecfdf5 !important;
+  border-color: #22c55e !important;
+  color: #15803d !important;
+  font-weight: 800;
+}
+
+.option-btn.selected-wrong {
+  background: #fef2f2 !important;
+  border-color: #ef4444 !important;
+  color: #b91c1c !important;
+  font-weight: 800;
+}
+
+.quiz-feedback {
+  display: none;
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.2rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  animation: fadeIn 0.25s ease;
+}
+
+.quiz-feedback.show-correct {
+  display: block;
+  background: #ecfdf5;
+  border: 1.5px solid #86efac;
+  color: #166534;
+}
+
+.quiz-feedback.show-wrong {
+  display: block;
+  background: #fef2f2;
+  border: 1.5px solid #fca5a5;
+  color: #991b1b;
+}
+
+/* ------------------------------------------------------------------------------
+   11. 第五單元：PIRLS 四層次深度深究卡片
+   ------------------------------------------------------------------------------ */
+.deep-think-card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 2.2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--trans-smooth);
+}
+
+.deep-think-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.level-tag {
+  display: inline-block;
+  font-size: 0.86rem;
+  font-weight: 800;
+  padding: 0.25rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  margin-bottom: 0.6rem;
+}
+
+.deep-q-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.6;
+  margin-bottom: 0.6rem;
+}
+
+.toggle-answer-btn {
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #334155;
+  cursor: pointer;
+  transition: var(--trans-smooth);
+}
+
+.toggle-answer-btn:hover {
+  background: #e2e8f0;
+}
+
+.deep-answer-box {
+  display: none;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  margin-top: 1.2rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  animation: fadeIn 0.3s ease;
+}
+
+.deep-answer-box.show {
+  display: block;
+}
+
+/* ------------------------------------------------------------------------------
+   12. 第六單元：闖關大冒險儀表板與關卡卡片
+   ------------------------------------------------------------------------------ */
+.adventure-dashboard {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 2.2rem;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.adv-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin: 1.4rem 0 1rem 0;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  margin-bottom: 0.2rem;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #f59e0b;
+}
+
+.progress-bar-container {
+  background: rgba(255, 255, 255, 0.15);
+  height: 12px;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.progress-bar-fill {
+  background: linear-gradient(90deg, #f59e0b, #10b981);
+  height: 100%;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+.stage-container {
+  display: none;
+}
+
+.stage-container.active-stage {
+  display: block;
+  animation: fadeIn 0.35s ease;
+}
+
+.stage-card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.4rem;
+  box-shadow: var(--shadow-md);
+}
+
+.stage-header {
+  margin-bottom: 1.6rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.stage-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ------------------------------------------------------------------------------
+   13. 通用按鈕元件 (Buttons)
+   ------------------------------------------------------------------------------ */
+.btn-primary {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--radius-pill);
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.3);
+  transition: var(--trans-smooth);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
+}
+
+.btn-secondary {
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  color: #334155;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-pill);
+  font-size: 1.02rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--trans-smooth);
+}
+
+.btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid #cbd5e1;
+  color: #475569;
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--trans-smooth);
+}
+
+.btn-outline:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+/* ------------------------------------------------------------------------------
+   14. 頒獎認證彈窗 (Certificate Modal)
+   ------------------------------------------------------------------------------ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-overlay.show {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+.certificate-card {
+  background: #ffffff;
+  border: 4px solid #fde68a;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.cert-icon {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.cert-title {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: #92400e;
+  margin-bottom: 0.3rem;
+}
+
+.cert-subtitle {
+  color: #64748b;
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+}
+
+.cert-score-box {
+  background: #fffdf5;
+  border: 2px dashed #f59e0b;
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.cert-score-num {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #d97706;
+  line-height: 1;
+}
+
+.cert-feedback {
+  font-size: 1.08rem;
+  color: #334155;
+  line-height: 1.8;
+  margin-bottom: 1.8rem;
+}
+
+.cert-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------------------------
+   15. 頁腳 (App Footer)
+   ------------------------------------------------------------------------------ */
+.app-footer {
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  padding: 2rem 1.4rem;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-top: auto;
+}
+
+/* ------------------------------------------------------------------------------
+   16. 響應式佈局適應 (RWD: 電腦 / 平板 / 手機)
+   ------------------------------------------------------------------------------ */
+@media (max-width: 900px) {
+  .season-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .match-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .para-notes {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --font-base: 18px;
+  }
+
+  .header-container {
+    padding: 0.7rem 1rem;
+  }
+
+  .brand-text h1 {
+    font-size: 1.25rem;
+  }
+
+  .brand-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.8rem;
+  }
+
+  .season-banner-title {
+    font-size: 1.6rem;
+  }
+
+  .season-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .paragraph-card {
+    padding: 1.3rem 1.4rem;
+  }
+
+  .para-text {
+    font-size: 1.2rem;
+    padding: 1rem 1.2rem;
+  }
+
+  .adv-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .certificate-card {
+    padding: 1.8rem 1.2rem;
+  }
+}
